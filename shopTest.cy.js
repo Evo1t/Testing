@@ -7,6 +7,7 @@ describe('example shop app', () => {
         let userName = 'Evo1t';
         let userPass = 'secret_sauce';
 
+        // Вводит данные через раз
         cy.get('#loginusername').should('be.visible').type(userName);
         cy.get('#loginpassword').should('be.visible').type(userPass);
         cy.contains('button', 'Log in').click();
