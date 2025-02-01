@@ -22,6 +22,9 @@ describe('example shop app', () => {
 
         cy.get('.form-label').last().should('have.text', 'User');
 
+        // cy.getCookie('userName').should('exist');
+        cy.getCookie('userName').should('have.property', 'value', `${userName}`)
+
         cy.contains('button', 'Log out').as('logoutButton').click();
 
         cy.get('@logoutButton').should('not.exist')
@@ -29,7 +32,7 @@ describe('example shop app', () => {
         cy.get('[id="userName"]').clear();
         cy.get('[id="password"]').clear();
     });
-
+    
     it('incorrect account password', () => {
         cy.get('.card').eq(-1).click()
         cy.get('[id="login"]').click()
