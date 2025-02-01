@@ -28,6 +28,8 @@ describe('template spec', () => {
       cy.get('p[id="doubleClickMessage"]').should('have.text', 'You have done a double click');
       cy.get('p[id="rightClickMessage"]').should('have.text', 'You have done a right click');
       cy.get('p[id="dynamicClickMessage"]').should('have.text', 'You have done a dynamic click');
+
+      cy.getCookie('your_cookie_name').should('exist');
     });
 
     it('Проверка разных alert', () => {
@@ -63,6 +65,193 @@ describe('template spec', () => {
         cy.contains('li', 'Check Box').click();
 
         cy.get('.rct-checkbox').click();
-        cy.get('[id="result"]').should('have.text', 'You have selected :home, desktop, notes, commands, documents, workspace, react, angular, veu, office, public, private, classified, general, downloads, wordFile, excelFile');
-    })
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'home',
+                'desktop',
+                'notes',
+                'commands',
+                'documents',
+                'workspace',
+                'react',
+                'angular',
+                'veu',
+                'office',
+                'public',
+                'private',
+                'classified',
+                'general',
+                'downloads',
+                'wordFile',
+                'excelFile'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+
+        cy.get('.rct-collapse-btn').click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'desktop',
+                'notes',
+                'commands'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-checkbox').eq(1).click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'documents',
+                'workspace',
+                'react',
+                'angular',
+                'veu',
+                'office',
+                'public',
+                'private'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-checkbox').eq(1).click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'downloads',
+                'wordFile',
+                'excelFile'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        // cy.get('.rct-checkbox').eq(1).click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'desktop',
+                'notes',
+                'commands',
+                'documents',
+                'workspace',
+                'react',
+                'angular',
+                'veu',
+                'office',
+                'public',
+                'private',
+                'classified',
+                'general',
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'desktop',
+                'notes',
+                'commands',
+                'downloads',
+                'wordFile',
+                'excelFile'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-checkbox').eq(1).click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'documents',
+                'workspace',
+                'react',
+                'angular',
+                'veu',
+                'office',
+                'public',
+                'private',
+                'classified',
+                'general',
+                'downloads',
+                'wordFile',
+                'excelFile'
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-collapse-btn').eq(1).click();
+        cy.get('.rct-checkbox').eq(-1).click();
+        cy.get('.rct-checkbox').eq(-2).click();
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'desktop',
+                'notes',
+                'commands',
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+        cy.get('.rct-checkbox').eq(1).click();
+        cy.get('.rct-collapse-btn').eq(1).click();
+        cy.get('.rct-collapse-btn').eq(2).click();
+        cy.get('.rct-checkbox').eq(3).click();
+        cy.get('.rct-checkbox').eq(4).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'documents',
+                'workspace',
+                'react',
+                'angular',
+                'veu',
+                'office',
+                'public',
+                'private',
+                'classified',
+                'general',
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+
+        cy.get('.rct-checkbox').eq(2).click();
+        cy.get('.rct-collapse-btn').eq(2).click();
+        cy.get('.rct-collapse-btn').eq(3).click();
+        cy.get('.rct-checkbox').eq(4).click();
+        cy.get('.rct-checkbox').eq(5).click();
+        cy.get('#result').within(() => {
+            const textsToCheck = [
+                'downloads',
+                'wordFile',
+                'excelFile',
+            ];
+            textsToCheck.forEach(text => {
+                cy.contains(text).should('exist');
+            });
+        });
+    });
 })
