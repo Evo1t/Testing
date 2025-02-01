@@ -118,6 +118,14 @@ describe('example shop app', () => {
         cy.get('[id="age"]').type(Age);
         cy.get('[id="salary"]').type(Salary);
         cy.get('[id="department"]').type(Department);
+        
+        cy.get('[id="firstName"]').should('have.value' , firstName);
+        cy.get('[id="lastName"]').should('have.value' , lastName);
+        cy.get('[id="userEmail"]').should('have.value' , Email);
+        cy.get('[id="age"]').should('have.value' , Age);
+        cy.get('[id="salary"]').should('have.value' , Salary);
+        cy.get('[id="department"]').should('have.value' , Department);
+        
         cy.get('[id="submit"]').click();
 
         cy.get('.rt-tr-group').eq(3).within(() => {
